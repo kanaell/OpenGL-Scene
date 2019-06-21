@@ -8,7 +8,7 @@ from OpenGL.GLU import *
 from ObjLoader import *
 
 pygame.init()
-viewport = (800,600)
+viewport = (1920,1080)
 hx = viewport[0]/2
 hy = viewport[1]/2
 srf = pygame.display.set_mode(viewport, OPENGL | DOUBLEBUF)
@@ -16,6 +16,8 @@ srf = pygame.display.set_mode(viewport, OPENGL | DOUBLEBUF)
 glLightfv(GL_LIGHT0, GL_POSITION,  (-40, 200, 100, 0.0))
 glLightfv(GL_LIGHT0, GL_AMBIENT, (0.2, 0.2, 0.2, 1.0))
 glLightfv(GL_LIGHT0, GL_DIFFUSE, (0.5, 0.5, 0.5, 1.0))
+glMaterialfv(GL_FRONT, GL_SPECULAR, (1.0, 1.0, 1.0, 1.0))
+glMaterialfv(GL_FRONT, GL_SHININESS, (50))
 glEnable(GL_LIGHT0)
 glEnable(GL_LIGHTING)
 glEnable(GL_COLOR_MATERIAL)
@@ -30,13 +32,13 @@ clock = pygame.time.Clock()
 glMatrixMode(GL_PROJECTION)
 glLoadIdentity()
 width, height = viewport
-gluPerspective(90.0, width/float(height), 1, 100.0)
+gluPerspective(-45, width/float(height), 0.1, 50.0)
 glEnable(GL_DEPTH_TEST)
 glMatrixMode(GL_MODELVIEW)
 
-rx, ry = (0,0)
-tx, ty = (0,0)
-zpos = 5
+rx, ry = (-21, -36)
+tx, ty = (0, 0)
+zpos = 16
 rotate = move = False
 while 1:
     clock.tick(30)
@@ -63,6 +65,10 @@ while 1:
                 ty -= j
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+
+    print(rx, ry);
+    print(tx, ty);
+    print(zpos);
     glLoadIdentity()
 
     # RENDER OBJECT

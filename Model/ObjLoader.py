@@ -99,5 +99,5 @@ class OBJ:
                     glTexCoord2fv(self.texcoords[texture_coords[i] - 1])
                 glVertex3fv(self.vertices[vertices[i] - 1])
             glEnd()
-        glDisable(GL_TEXTURE_2D)
+            glDisable(GL_TEXTURE_2D)
         glEndList()
